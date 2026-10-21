@@ -6,18 +6,23 @@ Scope: Multi-Class Text Classification (7 emotions)
 
 ---
 
+## Project Overview
+* data: folder holding raw and cleaned data.
+* clean_data.ipynb: file holding code used to clean the data.
+* EDA.ipynb: visualizations, artifacts, biases, and likely failure modes.
+* neural_baseline.ipynb: the baseline CNN model applied to the data.
+
+---
+
+## Check-In 1
+
+---
+
 ## Data
 * Singh, Manoj, Subhash Panwar, and Sanju Choudhary. "A fine-grained labeled dataset for textual sentiment analysis in technical education." Data in Brief 57 (2024): 111120.
 * Size: 14,272 original observations, 14,133 cleaned observations ~2.4 MB.
 * [License/Usage Notes](http://creativecommons.org/licenses/by-nc/4.0)
 * Data can be downloaded [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/EITGBB) after accepting the terms and conditions.
-
----
-
-## Project Overview
-* data: folder holding raw and cleaned data.
-* clean_data.ipynb: file holding code used to clean the data.
-* EDA.ipynb: visualizations, artifacts, biases, and likely failure modes.
 
 ---
 
@@ -45,6 +50,28 @@ Scope: Multi-Class Text Classification (7 emotions)
 ## Initial Direction
 
 We expect for the next steps to try a text CNN because it can identify useful word and phrase patterns in short text descriptions. We plan to compare CNN configurations using different kernel sizes, numbers of filters, and training hyperparameters.
+
+---
+
+## Check-In 2
+
+---
+
+## Baseline
+
+- **Neural Baseline:** One CNN neural network baseline was trained in [neural_baseline.ipynb](neural_baseline.ipynb). The data was split into a train, validation, and test set. Categorical Cross-Entropy loss and the Adam optimizer were used to train the model. Key hyperparameters including the number of filters, the kernel size, the activation, the embedding dimension, and the layer architecture are used in the model and called out in the notebook.
+- **Supporting Non-Neural Baseline:** The largest class in the data, Grievance, is ~61.6% of the data after duplicates are dropped. That means the baseline accuracy is ~61.6% because that would be the accuracy of the model predicting 'Grievance' for all of the textual observations.
+
+---
+
+## Results
+
+---
+
+## Failure Analysis
+
+- **Unbalanced Classes:** Capturing the smaller classes in the training, validation, and test set was difficult because some were incredibly small (Appreciation had 10 observations after dropping duplicates).
+- **Small Observations:** Many of the observations in the data are shorter pieces of text. This made it more difficult for the model to learn the difference between the 7 different sentiments that it had to classify.
 
 ---
 
