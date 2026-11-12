@@ -118,6 +118,24 @@ Detailed evaluation results, including the classification report and confusion m
 
 ---
 
+## Check-In 3
+
+---
+## TF-IDF Implementation
+- Compare the CNN Baseline model against a tf-idf logistic regression model to see if the CNN has room to learn from the data
+
+## Advanced Extension
+- BERT transformer comparison model
+
+## Comparison
+- Compare the extension and tf-idf model to the baseline's performance
+
+## Focused change to the CNN
+- Change to class-weighted cross-entropy loss and specifically look at F1 macro scores
+
+## Failure Analysis
+- What still fails
+
 ## Authors
 - Hillary Metcheka
 - Maura Mann
