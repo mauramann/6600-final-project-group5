@@ -121,20 +121,20 @@ Detailed evaluation results, including the classification report and confusion m
 ## Check-In 3
 
 ---
-## TF-IDF Implementation
-- Compare the CNN Baseline model against a tf-idf logistic regression model to see if the CNN has room to learn from the data
+## Non-Neural TF-IDF Implementation
+- Compare the CNN Baseline model against a tf-idf logistic regression model to see if the CNN has room to learn from the data.
+
+## CNN Baseline Addition
+- A new CNN Baseline model was trained using validation f1 instead of validation loss for early stopping to decide the best weights. This additional model implementation was added to the bottom of [neural_baseline.ipynb](neural_baseline.ipynb) because after the previous check-ins, we decided we wanted to mainly focus on maximizing f1.
 
 ## Advanced Extension
-- BERT transformer comparison model
-
-## Comparison
-- Compare the extension and tf-idf model to the baseline's performance
-
-## Focused change to the CNN
-- Change to class-weighted cross-entropy loss and specifically look at F1 macro scores
+- A BERT Transformer model was trained on the same data and compared against the CNN Baseline within this notebook: [advanced_extension.ipynb](advanced_extension.ipynb).
+- Additionally, a controlled comparison was performed between a BERT Transformer model and a BERT model trained from scratch. The only difference between the two was the pre-trained weights vs. randomly initialized weights.
+- The BERT Transformer outperformed both the CNN Baseline and the BERT model from scratch, suggesting the pretraining made a difference in successfully predicting the minority classes.
 
 ## Failure Analysis
-- What still fails
+- *Limited Success With Small Classes*: None of the models were able to successfully predict within the Appreciation, Suggestion, or Willing to Support classes, suggesting the class imbalance is still an issue preventing higher metrics.
+- *The Best Model Is Still Not Good*: The best model, the BERT Transformer, had a macro-F1 score of 0.1918. While this indicates the model did learn some of the minority classes compared to the majority-baseline macro-f1 of 0.1089, this is still very low. This may indicate the task is too difficult to complete given the quality of the data.
 
 ## Authors
 - Hillary Metcheka
