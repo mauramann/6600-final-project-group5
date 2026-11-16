@@ -13,6 +13,9 @@ Scope: Multi-Class Text Classification (7 sentiments)
 * neural_baseline.ipynb: the baseline CNN model applied to the data.
 * advanced_extension.ipynb: the BERT Transformer extension applied to the data.
 
+* tfidf_logistic_regression.ipynb: TF-IDF + Logistic Regression model, evaluation, and comparison with the original CNN baseline.
+
+
 ---
 
 ## Check-In 1
@@ -123,7 +126,17 @@ Detailed evaluation results, including the classification report and confusion m
 
 ---
 ## Non-Neural TF-IDF Implementation
-- Compare the CNN Baseline model against a tf-idf logistic regression model to see if the CNN has room to learn from the data.
+- We implemented a TF-IDF + Logistic Regression model to evaluate whether a simpler traditional machine learning approach could outperform the original CNN baseline. The implementation is available in [tfidf_logistic_regression.ipynb](tfidf_logistic_regression.ipynb).
+- TF-IDF features included unigrams and bigrams, with a maximum of 10,000 features.
+
+### TF-IDF Results and CNN Comparison
+
+| Model | Test Accuracy | Macro Precision | Macro Recall | Macro F1 |
+|---|---|---|---|---|
+| Original CNN | 60.96% | 0.2139 | 0.1730 | 0.1692 |
+| TF-IDF + Logistic Regression | 62.99% | 0.2332 | 0.1808 | 0.1770 |
+
+The TF-IDF model slightly outperformed the original CNN baseline, improving macro F1 by 0.0078. This suggests that a simpler traditional machine learning model can capture useful patterns in the text and provides a meaningful benchmark for evaluating neural models.
 
 ## CNN Baseline Addition
 - A new CNN Baseline model was trained using validation f1 instead of validation loss. This additional model implementation was added to the bottom of [neural_baseline.ipynb](neural_baseline.ipynb) because after the previous check-ins, we decided we wanted to mainly focus on maximizing f1.
@@ -136,6 +149,9 @@ Detailed evaluation results, including the classification report and confusion m
 ## Failure Analysis
 - **Limited Success With Small Classes**: None of the models were able to successfully predict within the Appreciation, Suggestion, or Willing to Support classes, suggesting the class imbalance is still an issue preventing higher metrics.
 - **The Best Model Is Still Not Good**: The best model, the BERT Transformer, had a macro-F1 score of 0.1918. While this indicates the model did learn some of the minority classes compared to the majority-baseline macro-f1 of 0.1089, this is still very low. This may indicate the task is too difficult to complete given the quality of the data.
+- Despite the improvement, the TF-IDF model struggled with class imbalance. Grievance was the strongest-performing category, while Appreciation, Complaint, Suggestion, and Willing to Support received F1-scores of zero.
+- The confusion matrix showed that 293 Required Support observations and 131 Enquiry observations were incorrectly classified as Grievance. This indicates that the model favored the majority class and had difficulty distinguishing minority categories.
+
 
 ## Authors
 - Hillary Metcheka
