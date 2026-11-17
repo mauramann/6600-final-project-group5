@@ -148,9 +148,10 @@ The TF-IDF model slightly outperformed the original CNN baseline, improving macr
 
 ## Failure Analysis
 - **Limited Success With Small Classes**: None of the models were able to successfully predict within the Appreciation, Suggestion, or Willing to Support classes, suggesting the class imbalance is still an issue preventing higher metrics.
+        - Despite the improvement, the TF-IDF model struggled with class imbalance. Grievance was the strongest-performing category, while Appreciation, Complaint, Suggestion, and Willing to Support received F1-scores of zero.
+        - The confusion matrix showed that 293 Required Support observations and 131 Enquiry observations were incorrectly classified as Grievance. This indicates that the model favored the majority class and had difficulty distinguishing minority categories.
+        - Additionally, the BERT Transformer model misclassified 464 observations as Grievance and the CNN misclassified 513 observations as Grievance. This supports the fact that the majority class was favored by all models.
 - **The Best Model Is Still Not Good**: The best model, the BERT Transformer, had a macro-F1 score of 0.1918. While this indicates the model did learn some of the minority classes compared to the majority-baseline macro-f1 of 0.1089, this is still very low. This may indicate the task is too difficult to complete given the quality of the data.
-- Despite the improvement, the TF-IDF model struggled with class imbalance. Grievance was the strongest-performing category, while Appreciation, Complaint, Suggestion, and Willing to Support received F1-scores of zero.
-- The confusion matrix showed that 293 Required Support observations and 131 Enquiry observations were incorrectly classified as Grievance. This indicates that the model favored the majority class and had difficulty distinguishing minority categories.
 
 
 ## Authors
